@@ -31,20 +31,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.header {
-  overflow: hidden;
-  background: rgba(7, 17, 27, 0.5);
-  color: #fff;
-  .content-wrapper {
-    padding: 24px 12px 18px 24px;
-    .avatar {
-      display: inline-block;
-      > img {
-        width: 64px;
-        height: 64px;
-        border-radius: 2px;
-      }
-    }
-  }
-}
+  @import 'header.scss';
+
 </style>
