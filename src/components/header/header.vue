@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
      <div ></div>
+     <div><img :src="seller.avatar" /></div>
   </div>
 </template>
 
