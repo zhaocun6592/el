@@ -14,6 +14,7 @@
 
 <script>
 import MyHeader from "./components/header/header";
+const ERR_OK = 0;
 export default {
   data() {
     return {
@@ -27,7 +28,7 @@ export default {
     this.$http.get("/api/seller").then(response => {
       response = response.body;
       console.log(response);
-      if (response.errno === 0) {
+      if (response.errno === ERR_OK) {
         this.seller = response.data;
       }
     });
