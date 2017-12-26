@@ -12,5 +12,27 @@
           border-radius: 2px;
         }
       }
+      .content{
+          display: inline-block;
+          margin-left: 16px;
+          font-size: 14px;
+          .title{
+              margin: 2px 0 8px;
+              .brand{
+                  display:inline-block;
+                  vertical-align: top;
+                  width: 30px;
+                  height: 18px;
+                  background: url(brand@2x.png) no-repeat ;
+                  background-size: 30px 18px;
+              }
+              .name{
+                  margin-left: 6px;
+                  font-size: 16px;
+                  line-height: 18px;
+                  font-weight: bold;
+              }
+          }
+      }
     }
   }

@@ -8,8 +8,10 @@
           <div class="title">
                <span class="brand"></span>
                <span class="name">{{seller.name}}</span>
+             </div>
+                <div class="description">
+       {{seller.description}}/{{seller.deliveryTime}}分钟送达
           </div>
-          
       </div>
      </div>
      
@@ -31,6 +33,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  @import 'header.scss';
-
+@import "header.scss";
 </style>
