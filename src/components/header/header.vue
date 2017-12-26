@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-     <div>{{seller.name}}</div>
+     <div ></div>
   </div>
 </template>
 
