@@ -1,10 +1,16 @@
 <template>
   <div id="app">
     <my-header :seller="seller"></my-header>
-    <div class="content">
-      <div><router-link to="/goods">商品</router-link> </div>
-      <div><router-link to="/ratings">评论</router-link> </div>
-      <div><router-link to="/seller">商家</router-link> </div>
+    <div class="content border-1px">
+      <div>
+        <router-link to="/goods">商品</router-link>
+      </div>
+      <div>
+        <router-link to="/ratings">评论</router-link>
+      </div>
+      <div>
+        <router-link to="/seller">商家</router-link>
+      </div>
     </div>
     <keep-alive>
       <router-view></router-view>
@@ -37,18 +43,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$color: #ccc;
+@import "./assets/stylus/mixin";
 .content {
   height: 40px;
   line-height: 40px;
   display: flex;
-  background: $color;
+  /* border-bottom: 1px solid #ccc; */
+  @include  border-1px(#ccc);
   > div {
     flex: 1;
     text-align: center;
   }
 }
-
 .router-link-active {
   color: rgb(17, 185, 101);
 }

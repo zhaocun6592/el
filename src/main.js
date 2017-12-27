@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import Seller from './components/seller/seller'
 import Goods from './components/goods/goods'
 import Ratings from './components/ratings/ratings'
+import "./assets/stylus/index.scss"
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);

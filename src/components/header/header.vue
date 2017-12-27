@@ -14,7 +14,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -33,5 +32,46 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "header.scss";
+@import "../../assets/stylus/mixin";
+.header {
+  overflow: hidden;
+  background: rgba(7, 17, 27, 0.5);
+  color: #fff;
+  .content-wrapper {
+    padding: 24px 12px 18px 24px;
+    font-size: 0;
+    .avatar {
+      display: inline-block;
+      > img {
+        width: 64px;
+        height: 64px;
+        border-radius: 2px;
+      }
+    }
+    .content {
+      display: inline-block;
+      margin-left: 16px;
+      .title {
+        font-size: 14px;
+        .brand {
+          display: inline-block;
+          vertical-align: top;
+          width: 30px;
+          height: 18px;
+          @include bg-image(brand);
+          background-size: 30px 18px;
+        }
+        .name {
+          margin-left: 6px;
+          font-size: 16px;
+          line-height: 18px;
+          font-weight: bold;
+        }
+      }
+      .description {
+        font-size: 16px;
+      }
+    }
+  }
+}
 </style>
