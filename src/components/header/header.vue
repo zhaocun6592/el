@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="content-wrapper">
+    <div class="content-wrapper ">
       <div class="avatar">
         <img :src="seller.avatar" />
       </div>
