@@ -1,16 +1,16 @@
-
-@mixin border-top($color){
-  position: relative;
-  &::before{
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    border-top: 1px solid $color;
-    content:" "
-  }
+@mixin border-top($color) {
+    position: relative;
+    &::before {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border-top: 1px solid $color;
+        content: " "
+    }
 }
+
 @mixin border-bottom ($color) {
     position: relative;
     &:after {
@@ -24,17 +24,44 @@
     }
 }
 
-@mixin border-left($color){
-  position: relative;
-  &::before{
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    border-left:1px solid $color;
-    content:" "
-  }
+@mixin border-left($color) {
+    position: relative;
+    &::before {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        border-left: 1px solid $color;
+        content: " "
+    }
+}
+
+@mixin border-right($color) {
+    position: relative;
+    &::before {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: $color;
+        /*  border-left:1px solid $color; */
+        content: " "
+    }
+}
+
+@mixin border-all($color) {
+    position: relative;
+    &:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: 0 0;
+        border: 1px solid $color;
+        content: "";
+    }
 }
 
 @mixin border-none() {

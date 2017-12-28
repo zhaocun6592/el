@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <my-header :seller="seller"></my-header>
-    <div class="content ">
+    <div class="content border-bottom">
       <div>
         <router-link to="/goods">商品</router-link>
       </div>
@@ -16,7 +16,7 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <div class="main border-left">
+    <div class="main border-all">
       我是main
     </div>
   </div>
@@ -52,24 +52,20 @@ export default {
   height: 40px;
   line-height: 40px;
   display: flex;
-  /* border-bottom: 1px solid #ccc; */
-  /* @include  border-bottom(blue);
-   @include  border-top(red); */
+  @include border-bottom(rgba(7, 17, 27, 0.1));
   > div {
     flex: 1;
     text-align: center;
     box-sizing: border-box;
 
   }
-  &nth-of-type(1){
-  @include border-left(red);
-  }
+ 
 }
 .main{
-  width: 100px;
   margin-left: 50px;
+  width: 100px;
   height: 100px;
-   @include border-left(red);
+   @include border-all(red);
 }
 .router-link-active {
   color: rgb(17, 185, 101);
