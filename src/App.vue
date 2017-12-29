@@ -19,6 +19,9 @@
     <div class="main border-all">
       我是main
     </div>
+     <div class="main1">
+      我是main
+    </div>
   </div>
 </template>
 
@@ -59,13 +62,20 @@ export default {
     box-sizing: border-box;
 
   }
- 
+
 }
 .main{
   margin-left: 50px;
   width: 100px;
   height: 100px;
    @include border-all(red);
+}
+.main1{
+  margin-left: 50px;
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+  border:1px solid red;
 }
 .router-link-active {
   color: rgb(17, 185, 101);
