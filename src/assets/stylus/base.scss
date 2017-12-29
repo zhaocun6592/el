@@ -91,8 +91,9 @@
 @media (-webkit-min-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5){
   .border-all{
     &:after{
-      width: 150%;
-      height: 150%;
+      width: 150%!important;
+      height: 150%!important;
+      transform-origin: 0 0;
       -webkit-transform:scale(0.7);
       transform:scale(0.7);
 
@@ -104,11 +105,11 @@
 @media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2){
   .border-all{
     &:after{
-      width: 200%;
-      height: 200%;
+      width: 200%!important;
+      height: 200%!important;
+      transform-origin: 0 0;
       -webkit-transform:scale(0.5);
       transform:scale(0.5);
-
     }
   }
 }
