@@ -17,10 +17,10 @@
       <router-view></router-view>
     </keep-alive>
     <div class="main border-all">
-      我是main
+     我是移动端1px
     </div>
      <div class="main1">
-      我是main
+       我是border1px
     </div>
   </div>
 </template>
