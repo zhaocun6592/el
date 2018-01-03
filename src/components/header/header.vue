@@ -12,12 +12,12 @@
         <div class="description">
           {{seller.description}}/{{seller.deliveryTime}}分钟送达
         </div>
-        <div v-if="seller.supports" class="support" @click="showDetail">
+        <div v-if="seller.supports" class="support" >
           <span class="icon" :class="classMap[seller.supports[0].type]"></span>
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
-      <div class="support-count">
+      <div class="support-count" @click="showDetail">
         <span class="count">{{seller.supports.length}}个</span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
@@ -31,7 +31,7 @@
     <div class="background">
       <img :src="seller.avatar" width="100%" height="100%" />
     </div>
-    <div class="detail" v-show="detailShow">
+    <div class="detail" v-show="detailShow" @click="hideDetail">
 
     </div>
   </div>
@@ -46,7 +46,6 @@ export default {
   },
   created() {
     this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
-
   },
   data() {
     return {
@@ -55,7 +54,10 @@ export default {
   },
   methods: {
     showDetail() {
-      this.detailShow=true;
+      this.detailShow = true;
+    },
+    hideDetail() {
+      this.detailShow = false;
     }
   }
 };
