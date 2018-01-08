@@ -12,7 +12,7 @@
         <div class="description">
           {{seller.description}}/{{seller.deliveryTime}}分钟送达
         </div>
-        <div v-if="seller.supports" class="support" >
+        <div v-if="seller.supports!=null" class="support">
           <span class="icon" :class="classMap[seller.supports[0].type]"></span>
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
@@ -31,17 +31,38 @@
     <div class="background">
       <img :src="seller.avatar" width="100%" height="100%" />
     </div>
-    <div class="detail" v-show="detailShow" >
+    <transition name="fade">
+      <div class="detail" v-show="detailShow">
         <div class="detail-wrapper clearfix">
-            <div class="detail-main">
-              <h1 class="name">{{seller.name}}</h1>
-
+          <div class="detail-main">
+            <h1 class="name">{{seller.name}}</h1>
+            <div class="store-title">
+              <div class="line"></div>
+              <div class="text">优惠信息</div>
+              <div class="line"></div>
             </div>
+            <ul v-if="seller.supports" class="supports">
+              <li class="support-item" v-for="(item,index) in seller.supports">
+                <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+                <span class="text">{{seller.supports[index].description}}</span>
+              </li>
+            </ul>
+            <div class="store-title">
+              <div class="line"></div>
+              <div class="text">商家公告</div>
+              <div class="line"></div>
+            </div>
+            <div class="bulletin">
+              <div class="content">{{seller.bulletin}}</div>
+            </div>
+
+          </div>
         </div>
         <div class="detail-close">
-           <i class="icon-close" @click="hideDetail"></i>
+          <i class="icon-close" @click="hideDetail"></i>
         </div>
-    </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -52,12 +73,11 @@ export default {
       type: Object
     }
   },
-  created() {
-    this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
-  },
+
   data() {
     return {
-      detailShow: true
+      detailShow: false,
+      classMap: []
     };
   },
   methods: {
@@ -67,6 +87,9 @@ export default {
     hideDetail() {
       this.detailShow = false;
     }
+  },
+  created() {
+    this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
   }
 };
 </script>
@@ -217,25 +240,101 @@ export default {
     width: 100%;
     height: 100%;
     overflow: auto;
-   /*  backdrop-filter: blur(10px); */
+    /*  backdrop-filter: blur(10px); */
     z-index: 100;
     background: rgba(7, 17, 27, 0.8);
-    .detail-wrapper{
+    &.fade-enter-active,
+    &.fade-leave-active {
+      transition: all 0.5s;
+    }
+
+    &.fade-enter,
+    &.fade-leave-active {
+      opacity: 0;
+      background: rgba(7, 17, 27, 0);
+    }
+
+    .detail-wrapper {
       width: 100%;
       min-height: 100%;
-      .detail-main{
-        padding-bottom:64px;
+      .detail-main {
+        padding-bottom: 64px;
         overflow: hidden;
-;
-        .name{
+        .name {
           margin-top: 64px;
           text-align: center;
           font-weight: 700;
           line-height: 32px;
         }
+        .store-title {
+          display: flex;
+          width: 80%;
+          margin: 28px auto;
+          text-align: center;
+          .line {
+            flex: 1;
+            position: relative;
+            top: -6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+          }
+          .text {
+            padding: 0 12px;
+            font-size: 14px;
+            font-weight: 700;
+          }
+        }
+        .supports {
+          width: 80%;
+          margin: 0 auto;
+          .support-item {
+            padding: 0 12px;
+            margin-bottom: 12px;
+            font-size: 0;
+            &:last-child {
+              margin-bottom: 0;
+            }
+            .icon {
+              display: inline-block;
+              width: 16px;
+              height: 16px;
+              vertical-align: top;
+              margin-right: 6px;
+              background-size: 16px 16px;
+              background-repeat: no-repeat;
+              &.decrease {
+                @include bg-image("decrease_2");
+              }
+              &.discount {
+                @include bg-image("discount_2");
+              }
+              &.guarantee {
+                @include bg-image("guarantee_2");
+              }
+              &.invoice {
+                @include bg-image("invoice_2");
+              }
+              &.special {
+                @include bg-image("special_2");
+              }
+            }
+            .text {
+              line-height: 16px;
+              font-size: 14px;
+            }
+          }
+        }
+        .bulletin {
+          width: 80%;
+          margin: 0 auto;
+          .content {
+            padding: 0 12px;
+            line-height: 24px;
+            font-size: 14px;
+          }
+        }
       }
     }
-    .detail-close{
+    .detail-close {
       position: relative;
       width: 32px;
       height: 32px;
@@ -243,7 +342,6 @@ export default {
       text-align: center;
       font-size: 32px;
       clear: both;
-
     }
   }
 }
