@@ -16,12 +16,12 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <div class="main border-all" style="color:orange;font-size:15px;text-align:center">
+    <!-- <div class="main border-all" style="color:orange;font-size:15px;text-align:center">
      我是移动端1px 像素
     </div>
      <div class="main1">
        我是border1px
-    </div>
+    </div> -->
   </div>
 </template>
 
