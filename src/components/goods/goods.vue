@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul class="menu-ul">
-        <li v-for="(item,index) in goods" class="menu-item" :class="{current:currentIndex==index}"  @click="selectMenu(index,$event)" ref="menuList">
+        <li v-for="(item,index) in goods" class="menu-item" :class="{current:currentIndex==index}" @click="selectMenu(index,$event)" ref="menuList">
           <span class="text border-bottom">
             <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
           </span>
@@ -34,14 +34,39 @@
           </ul>
         </li>
       </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
+    <shopchart></shopchart>
   </div>
 </template>
 
 <script>
 import BScroll from "better-scroll";
+import shopchart from "../shopcart/shopcart"
 const ERR_OK = 0;
 export default {
+  components:{
+    shopchart
+  },
   data() {
     return {
       mess: "123",
@@ -71,6 +96,7 @@ export default {
         let height = this.listHeight[i];
         let height2 = this.listHeight[i + 1];
         if (!height2 || (this.scrollY >= height && this.scrollY < height2)) {
+          this.menuFllow(i);
           return i;
         }
       }
@@ -89,7 +115,6 @@ export default {
       this.foodScroll.on("scroll", pos => {
         if (pos.y <= 0) {
           this.scrollY = Math.abs(Math.round(pos.y));
-          console.log(this.scrollY);
         }
       });
     },
@@ -111,6 +136,11 @@ export default {
       let foodList = this.$refs.foodList;
       let el = foodList[index];
       this.foodScroll.scrollToElement(el, 300);
+    },
+    menuFllow(index) {
+      let menu = this.$refs.menuList;
+      let el = menu[index];
+      this.menuScroll.scrollToElement(el, 300, 0, -100);
     }
   }
 };

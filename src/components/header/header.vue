@@ -18,7 +18,8 @@
         </div>
       </div>
       <div class="support-count" @click="showDetail">
-        <span class="count">{{seller.supports.length}}个</span>
+        <span class="count"  ref="countNum"></span>
+     <!--    <span class="count">{{seller.supports.length}}个</span> -->
         <i class="icon-keyboard_arrow_right"></i>
       </div>
 
@@ -90,7 +91,10 @@ export default {
   },
   created() {
     this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
-  }
+  },
+   updated:function(){
+      this.$refs.countNum.innerHTML=this.seller.supports.length+"个";
+  },
 };
 </script>
 
