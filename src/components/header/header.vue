@@ -245,7 +245,7 @@ export default {
     height: 100%;
     overflow: auto;
     /*  backdrop-filter: blur(10px); */
-    z-index: 100;
+    z-index: 200;
     background: rgba(7, 17, 27, 0.8);
     &.fade-enter-active,
     &.fade-leave-active {
