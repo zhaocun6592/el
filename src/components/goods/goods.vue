@@ -44,42 +44,25 @@
 
 <script>
 import BScroll from "better-scroll";
-import shopchart from "../shopcart/shopcart"
-import cartControl from "../cartcontrol/cartcontrol"
+import shopchart from "../shopcart/shopcart";
+import cartControl from "../cartcontrol/cartcontrol";
 const ERR_OK = 0;
 export default {
-  props:{
-    seller:{
-      type:Object
+  props: {
+    seller: {
+      type: Object
     }
   },
-  components:{
-    shopchart,
-    cartControl
-  },
+
   data() {
     return {
-      mess: "123",
-      goods: {},
+      goods: [],
       scrollY: "",
-      listHeight: []
+      listHeight: [],
+      selectedFood: {}
     };
   },
-  created() {
-    this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
-    this.$http.get("/api/goods").then(response => {
-      response = response.body;
-      console.log(response);
-      if (response.errno === ERR_OK) {
-        this.goods = response.data;
-        // setTimeout(this._initScroll, 30);
-        this.$nextTick(() => {
-          this._initScroll();
-          this._calculateHeight();
-        });
-      }
-    });
-  },
+
   computed: {
     currentIndex() {
       for (let i = 0; i < this.listHeight.length; i++) {
@@ -91,7 +74,33 @@ export default {
         }
       }
       return 0;
+    },
+    selectFoods() {
+      let foods = [];
+      this.goods.forEach(good => {
+        good.foods.forEach(food => {
+          if (food.count) {
+            foods.push(food);
+          }
+        });
+      });
+      return foods;
     }
+  },
+  created() {
+    this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
+    this.$http.get("/api/goods").then(response => {
+      response = response.body;
+      /*  console.log(response); */
+      if (response.errno === ERR_OK) {
+        this.goods = response.data;
+        // setTimeout(this._initScroll, 30);
+        this.$nextTick(() => {
+          this._initScroll();
+          this._calculateHeight();
+        });
+      }
+    });
   },
   methods: {
     _initScroll() {
@@ -132,6 +141,11 @@ export default {
       let el = menu[index];
       this.menuScroll.scrollToElement(el, 300, 0, -100);
     }
+  },
+
+  components: {
+    shopchart,
+    cartControl
   }
 };
 </script>
@@ -234,7 +248,8 @@ export default {
           line-height: 14px;
           color: rgb(7, 17, 27);
         }
-        .desc, .extra {
+        .desc,
+        .extra {
           line-height: 10px;
           font-size: 10px;
           color: rgb(147, 153, 159);
@@ -262,10 +277,10 @@ export default {
             color: rgb(147, 153, 159);
           }
         }
-        .cart-wrapper{
-          position:absolute;
+        .cart-wrapper {
+          position: absolute;
           right: 0;
-          bottom:12px;
+          bottom: 12px;
         }
       }
     }

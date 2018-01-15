@@ -1,19 +1,20 @@
 <template>
   <div class="cartcontrol">
-    <div class="cart-decrease icon-remove_circle_outline"
-     v-show="food.count>0"
-     @click="minus"></div>
+    <transition name="fade">
+      <div class="cart-decrease icon-remove_circle_outline" v-show="food.count>0" @click="minus"></div>
+    </transition>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
+
     <div class="cart-add icon-add_circle" @click="add"></div>
   </div>
 </template>
 
 <script>
-import Vue from "vue"
+import Vue from "vue";
 export default {
-  props:{
-    food:{
-      type:Object
+  props: {
+    food: {
+      type: Object
     }
   },
   data() {
@@ -21,18 +22,17 @@ export default {
       msg: "Welcome to Your Vue.js App"
     };
   },
-  methods:{
-    add(){
-    if(!this.food.count){
-      Vue.set(this.food,"count",1)
-    }else{
-      this.food.count++
+  methods: {
+    add() {
+      if (!this.food.count) {
+        Vue.set(this.food, "count", 1);
+      } else {
+        this.food.count++;
+      }
+    },
+    minus() {
+      this.food.count--;
     }
-  },
-  minus(){
-    this.food.count--
-  }
-
   }
 };
 </script>
@@ -44,8 +44,16 @@ export default {
   .cart-decrease {
     display: inline-block;
     padding: 6px;
-    font-size:24px;
-     color: rgb(0, 160, 220);
+    font-size: 24px;
+    color: rgb(0, 160, 220);
+    opacity: 1;
+    &.fade-enter-active,&.fade-leave-active {
+      transition: all 0.5s;
+    }
+    &.fade-enter,&.fade-leave-active {
+      opacity: 0;
+
+    }
   }
   .cart-count {
     display: inline-block;
