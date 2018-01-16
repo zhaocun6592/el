@@ -15,10 +15,17 @@
         <div class="pay" :class="payClass">{{paydesc}}</div>
       </div>
     </div>
+    <div class="listFood">
+      <div class="title">
+        <div>购物车</div>
+        <div>清空</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import cartcontrol from "../cartcontrol/cartcontrol"
 export default {
   props: {
     selectFoods: {
@@ -41,9 +48,13 @@ export default {
       default: 0
     }
   },
+  components: {
+    cartcontrol
+  },
   data() {
     return {
-      msg: "cart"
+      msg: "cart",
+      flod:true
     };
   },
   computed: {
@@ -183,6 +194,13 @@ export default {
             color:#fff
         }
       }
+    }
+  }
+  .listFood{
+    width:100;
+    .title{
+      height: 40px;
+      background:#f3f5f7;
     }
   }
 }
