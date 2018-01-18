@@ -14,7 +14,7 @@
           <div class="desc">另需配送费￥{{deliveryPrice}}</div>
         </div>
         <div class="content-right">
-          <div class="pay" :class="payClass">{{paydesc}}</div>
+          <div class="pay" :class="payClass" >{{paydesc}}</div>
         </div>
       </div>
       <transition name="fold">
