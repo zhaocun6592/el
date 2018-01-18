@@ -33,7 +33,7 @@
       <img :src="seller.avatar" width="100%" height="100%" />
     </div>
     <transition name="fade">
-      <div class="detail" v-show="detailShow">
+      <div class="detail" v-show="detailShow"   @click="hideDetail">
         <div class="detail-wrapper clearfix">
           <div class="detail-main">
             <h1 class="name">{{seller.name}}</h1>
@@ -244,16 +244,20 @@ export default {
     width: 100%;
     height: 100%;
     overflow: auto;
-    /*  backdrop-filter: blur(10px); */
+    backdrop-filter: blur(10px);
     z-index: 200;
     background: rgba(7, 17, 27, 0.8);
+    transform: translate3d(0,0,0);
+    transform: scale(1);
     &.fade-enter-active,
     &.fade-leave-active {
       transition: all 0.5s;
+
     }
 
     &.fade-enter,
     &.fade-leave-active {
+      transform: scale(0);
       opacity: 0;
       background: rgba(7, 17, 27, 0);
     }

@@ -16,9 +16,22 @@
       </div>
     </div>
     <div class="listFood">
-      <div class="title">
-        <div>购物车</div>
-        <div>清空</div>
+      <div class="list-header">
+        <h1 class="title"物车</h1>
+        <span class="empty">清空</span>
+      </div>
+      <div class="list-content">
+        <ul>
+          <li class="food" v-for="(food,index) in selectFoods">
+              <span class="name">{{food.name}}</span>
+              <div class="price">
+                  <span>￥{{food.price*food.count}}</span>
+              </div>
+              <div class="cartcontrol-wrapper">
+                <cartcontrol :food="food"></cartcontrol>
+              </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -96,6 +109,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "../../assets/stylus/mixin";
 .shopcart {
   position: fixed;
   left: 0;
@@ -197,10 +211,58 @@ export default {
     }
   }
   .listFood{
-    width:100;
-    .title{
+    position:absolute;
+    left: 0;
+    bottom:0;
+    width:100%;
+    .list-header{
       height: 40px;
+      line-height: 40px;
+      padding: 0 18px;
       background:#f3f5f7;
+      border-bottom: 1px solid rgba(7,17,27,0.1);
+      .title{
+        float: left;
+        font-size: 14px;
+        color: rgb(7,17,27);
+      }
+      .empty{
+        float:right;
+        font-size: 12px;
+        color: reb(0,160,220);
+      }
+    }
+    .list-content{
+      padding:0 18px;
+      max-height: 217px;
+      overflow:hidden;
+      background: #fff;
+      .food{
+        position: relative;
+        padding:12px 0;
+        box-sizing:border-box;
+        @include border-bottom(rgba(7,17,27,0.1));
+        .name{
+          line-height:24px;
+          font-size: 14px;
+          color: rgb(7,17,27);
+        }
+        .price{
+          position: absolute;
+          right: 90px;
+          bottom: 12px;
+          line-height: 24px;
+          font-size: 14px;
+          font-weight:700;
+          color:rgb(240,20,20);
+        }
+        .cartcontrol-wrapper{
+          position: absolute;
+          right: 0;
+          bottom:6px;
+        }
+
+      }
     }
   }
 }
