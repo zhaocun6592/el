@@ -63,30 +63,7 @@ export default {
     };
   },
 
-  computed: {
-    currentIndex() {
-      for (let i = 0; i < this.listHeight.length; i++) {
-        let height = this.listHeight[i];
-        let height2 = this.listHeight[i + 1];
-        if (!height2 || (this.scrollY >= height && this.scrollY < height2)) {
-          this.menuFllow(i);
-          return i;
-        }
-      }
-      return 0;
-    },
-    selectFoods() {
-      let foods = [];
-      this.goods.forEach(good => {
-        good.foods.forEach(food => {
-          if (food.count) {
-            foods.push(food);
-          }
-        });
-      });
-      return foods;
-    }
-  },
+
   created() {
     this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
     this.$http.get("/api/goods").then(response => {
@@ -140,6 +117,30 @@ export default {
       let menu = this.$refs.menuList;
       let el = menu[index];
       this.menuScroll.scrollToElement(el, 300, 0, -100);
+    }
+  },
+    computed: {
+    currentIndex() {
+      for (let i = 0; i < this.listHeight.length; i++) {
+        let height = this.listHeight[i];
+        let height2 = this.listHeight[i + 1];
+        if (!height2 || (this.scrollY >= height && this.scrollY < height2)) {
+          this.menuFllow(i);
+          return i;
+        }
+      }
+      return 0;
+    },
+    selectFoods() {
+      let foods = [];
+      this.goods.forEach(good => {
+        good.foods.forEach(food => {
+          if (food.count) {
+            foods.push(food);
+          }
+        });
+      });
+      return foods;
     }
   },
 

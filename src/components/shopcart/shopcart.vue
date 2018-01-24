@@ -14,7 +14,7 @@
           <div class="desc">另需配送费￥{{deliveryPrice}}</div>
         </div>
         <div class="content-right">
-          <div class="pay" :class="payClass" >{{paydesc}}</div>
+          <div class="pay" :class="payClass" @click.stop.prevent="pay">{{paydesc}}</div>
         </div>
       </div>
       <transition name="fold">
@@ -112,6 +112,7 @@ export default {
         return "enough";
       }
     },
+
     listShow() {
       if (!this.count) {
         this.fold = true;
@@ -143,10 +144,17 @@ export default {
     hideList() {
       this.fold = !this.fold;
     },
-    empty(){
+    empty() {
       this.selectFoods.forEach(food => {
-        food.count =0;
+        food.count = 0;
       });
+    },
+    pay() {
+      if (this.totalPrice < this.minPrice) {
+        return;
+      } else {
+        alert(`支付${this.totalPrice}元`);
+      }
     }
   }
 };
